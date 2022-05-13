@@ -15,12 +15,7 @@ pipeline {
   }
 
 
-    stage ('clean'){
-      steps{
-        echo '------------>clean<------------'
-        sh 'npm cache clean --force'
-      }
-    }
+
 
   stages{
     stage('Checkout') {
@@ -45,17 +40,16 @@ pipeline {
     }
 
 
-
     stage('Static Code Analysis') {
         steps{
-            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba:adn:app-olix.front.julian.alvarez',
-            sonarName:'''"CeibaADN-app-olix-Front(julian.alvarez)"''',
+            sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba:adn:olix.front.julian.alvarez',
+            sonarName:'''"CeibaADN-AppOlix-Front(julian.alvarez)"''',
             sonarPathProperties:'./sonar-project.properties')
         }
     }
 	
 	
-	
+
 
     stage('Build') {
      steps {
