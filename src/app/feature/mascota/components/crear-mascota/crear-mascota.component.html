@@ -1,1 +1,41 @@
-<p>crear-mascota works!</p>
+<br/>
+<br/>
+<div class="container">
+<h2>Registrar Mascota</h2>
+<br/>
+
+
+  <form [formGroup]="mascotaForm">
+    <div class="mb-3">
+      <label>idCliente:</label>
+      <input validar type="number" id="idCliente" name="idCliente" placeholder="idCliente"
+        class="form-control" formControlName="idCliente">
+    </div>
+    <div class="mb-3">
+      <label>Nombre:</label>
+      <input validar type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control"
+        formControlName="nombre" >
+    </div>
+    <div class="mb-3">
+      <label>Especie:</label>
+        <select validar class="form-select form-select-lg mb-2" id="especie" name="especie" formControlName="especie" aria-label=".form-select-lg example">
+          <option value="" >Selecione..</option>
+          <option value="PERRO">PERRO</option>
+          <option value="GATO">GATO</option>
+        </select>
+    </div>
+    <div class="mb-3">
+      <label>Raza:</label>
+      <input validar type="text" id="raza" name="raza" placeholder="raza" class="form-control"
+        formControlName="raza" >
+    </div>
+    <div class="mb-3 alert alert-danger" role="alert" *ngIf="this.errores">
+      {{nombreExepcion}} : {{mensaje}}
+    </div>
+    <div class="mb-3 alert alert-success" role="alert" *ngIf="this.exito">
+      !Registrado con Exito!
+    </div>
+    <input id="crearMascota" class="btn btn-primary" type="submit" value="Crear Mascota" (click)="crearMascota()"/>
+  </form>
+
+</div>

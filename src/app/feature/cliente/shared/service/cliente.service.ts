@@ -22,4 +22,6 @@ export class ClienteService {
     return this.http.doDelete<boolean>(`${environment.endpoint}/clientes/${cliente.id}`,
                                                  this.http.optsName('eliminar clientes'));
   }
+
+
 }

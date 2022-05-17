@@ -14,12 +14,12 @@ export class ServicioService {
   }
 
   public guardar(servicio: Servicio) {
-    return this.http.doPost<Servicio, boolean>(`${environment.endpoint}/servicio`, servicio,
+    return this.http.doPost<Servicio, boolean>(`${environment.endpoint}/servicios`, servicio,
                                                 this.http.optsName('crear/actualizar servicios'));
   }
 
   public eliminar(servicio: Servicio) {
-    return this.http.doDelete<boolean>(`${environment.endpoint}/servicio/${servicio.id}`,
+    return this.http.doDelete<boolean>(`${environment.endpoint}/servicios/${servicio.id}`,
                                                  this.http.optsName('eliminar servicio'));
   }
 }

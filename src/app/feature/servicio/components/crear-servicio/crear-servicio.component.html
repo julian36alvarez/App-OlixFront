@@ -1,1 +1,54 @@
-<p>crear-servicio works!</p>
+<br/>
+<br/>
+<div class="container">
+<h2>Registrar Servicio</h2>
+<br/>
+
+  <form [formGroup]="servicioForm">
+    <div class="mb-3">
+      <label>Tipo Usuario:</label>
+        <select validar class="form-select form-select-lg mb-2" id="tipoUsuario" name="tipoUsuario" formControlName="tipoUsuario" aria-label=".form-select-lg example">
+          <option value="" >Selecione..</option>
+          <option value="1">Afiliado</option>
+          <option value="2">Invitado</option>
+        </select>
+    </div>
+    <div class="mb-3">
+      <label>Tipo Servicio:</label>
+        <select validar class="form-select form-select-lg mb-2" id="tipoServicio" name="tipoServicio" formControlName="tipoServicio" aria-label=".form-select-lg example">
+          <option value="" >Selecione..</option>
+          <option value="1">Baño Medicado</option>
+          <option value="2">Baño Antipulgas</option>
+          <option value="3">Baño Simple</option>
+        </select>
+    </div>
+    <div class="mb-3">
+      <label>id Mascota:</label>
+      <input validar type="number" id="idMascota" name="idMascota" placeholder="Id mascota" class="form-control"
+        formControlName="idMascota" >
+    </div>
+    <div class="mb-3">
+      <label>id Cliente:</label>
+      <input validar type="number" id="idUsuario" name="idUsuario" placeholder="id Cliente" class="form-control"
+        formControlName="idUsuario" >
+    </div>
+    <div class="mb-3">
+      <label>fechaProgramada:</label>
+      <input validar type="text" id="fechaProgramada" name="fechaProgramada" placeholder="FechaProgramada" class="form-control"
+        formControlName="fechaProgramada" >
+    </div>
+    <div class="mb-3 alert alert-danger" role="alert" *ngIf="this.errores">
+      {{nombreExepcion}} : {{mensaje}}
+    </div>
+    <div class="mb-3 alert alert-success" role="alert" *ngIf="this.exito">
+      !Registrado con Exito!<br/>
+     <div class="alert-link">ID: {{id}}</div>
+     <div class="alert-link">Fecha Contable: {{fechaContable}}</div>
+     <div class="alert-link">Fecha Entrega: {{fechaEntrega}}</div>
+     <div class="alert-link">Fecha Programada: {{fechaProgramada}} </div>
+     <div class="alert-link">Total: ${{total}}</div>
+    </div>
+    <input id="crearServicio" class="btn btn-primary" type="submit" value="Crear Servicio" (click)="crearServicio()"/>
+  </form>
+
+</div>
