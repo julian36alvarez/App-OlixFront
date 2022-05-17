@@ -1,1 +1,38 @@
-<p>crear-cliente works!</p>
+<br/>
+<br/>
+<div class="container">
+<h2>Registrar Cliente</h2>
+<br/>
+
+
+  <form [formGroup]="clienteForm">
+    <div class="mb-3">
+      <label>Identificacion:</label>
+      <input validar type="number" id="identificacion" name="identificacion" placeholder="Identificacion"
+        class="form-control" formControlName="identificacion">
+    </div>
+    <div class="mb-3">
+      <label>Nombre:</label>
+      <input validar type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control"
+        formControlName="nombre" >
+    </div>
+    <div class="mb-3">
+      <label>Direccion:</label>
+      <input validar type="text" id="direccion" name="direccion" placeholder="Direccion" class="form-control"
+        formControlName="direccion" >
+    </div>
+    <div class="mb-3">
+      <label>Telefono:</label>
+      <input validar type="number" id="telefono" name="telefono" placeholder="Telefono" class="form-control"
+        formControlName="telefono" >
+    </div>
+    <div class="mb-3 alert alert-danger" role="alert" *ngIf="this.errores">
+      {{nombreExepcion}} : {{mensaje}}
+    </div>
+    <div class="mb-3 alert alert-success" role="alert" *ngIf="this.exito">
+      !Registrado con Exito!
+    </div>
+    <input id="crearCliente" class="btn btn-primary" type="submit" value="Crear Cliente" (click)="crearCliente()"/>
+  </form>
+
+</div>
