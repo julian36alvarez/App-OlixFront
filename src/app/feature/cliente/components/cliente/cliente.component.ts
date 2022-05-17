@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ClienteService } from '@cliente/shared/service/cliente.service';
 
 @Component({
   selector: 'app-cliente',
@@ -7,9 +8,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ClienteComponent implements OnInit {
 
-  constructor() { }
+  public trmValue = '';
 
-  ngOnInit(): void {
+  constructor(protected clienteService: ClienteService) { }
+
+  ngOnInit() {
+    this.clienteService.trm().subscribe(
+
+      (response) => {
+        this.trmValue = response[0].valor;
+      }
+    );
+
   }
 
 }
