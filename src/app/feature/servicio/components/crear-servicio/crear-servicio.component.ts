@@ -30,7 +30,13 @@ export class CrearServicioComponent implements OnInit {
   }
 
   crearServicio() {
-    console.log('Click');
+    var today = new Date(this.servicioForm.value.fechaProgramada);
+    var dd = String(today.getDate()+1).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0');
+    var yyyy = today.getFullYear();
+    var finalDate = yyyy + '-' + mm + '-' + dd + ' '+ this.servicioForm.value.horaProgramada +':00';
+    this.servicioForm.value.fechaProgramada = finalDate;
+    console.log(this.servicioForm.value);
     this.servicioServices.guardar(this.servicioForm.value).subscribe(
       (response) =>{
         console.log(response[0].id)
@@ -66,6 +72,7 @@ export class CrearServicioComponent implements OnInit {
       tipoServicio: new FormControl('', [Validators.required]),
       idMascota: new FormControl('', [Validators.required]),
       idUsuario: new FormControl('', [Validators.required]),
+      horaProgramada: new FormControl('', [Validators.required]),
       fechaProgramada: new FormControl('', [Validators.required])
     });
   }

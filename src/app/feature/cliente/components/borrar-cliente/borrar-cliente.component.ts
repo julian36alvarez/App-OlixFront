@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ClienteService } from '@cliente/shared/service/cliente.service';
+import { Cliente } from '@cliente/shared/model/cliente';
 
 @Component({
   selector: 'app-borrar-cliente',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BorrarClienteComponent implements OnInit {
 
-  constructor() { }
+  public listarClientes: Observable<Cliente[]>;
+  constructor(protected clienteService: ClienteService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.listarClientes = this.clienteService.consultar();
+  }
+
+  borrarCliente(cliente: any) {
+    console.log(cliente);
+    this.clienteService.eliminar(cliente).subscribe(
+      (response) =>{
+        console.log(response)
+        this.listarClientes = this.clienteService.consultar();
+      },
+      error => {
+        console.log(error)
+      }
+
+    )
   }
 
 }

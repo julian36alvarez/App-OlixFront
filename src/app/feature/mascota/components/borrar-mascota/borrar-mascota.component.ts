@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { MascotaService } from '@mascota/shared/service/mascota.service';
+import { Mascota } from '@mascota/shared/model/mascota';
 
 @Component({
   selector: 'app-borrar-mascota',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BorrarMascotaComponent implements OnInit {
 
-  constructor() { }
+  public listarMascotas: Observable<Mascota[]>;
+  constructor(protected mascotaService: MascotaService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.listarMascotas = this.mascotaService.consultar();
+  }
+
+  borrarMascota(mascota: any) {
+    console.log(mascota);
+    this.mascotaService.eliminar(mascota).subscribe(
+      (response) =>{
+        console.log(response)
+        this.listarMascotas = this.mascotaService.consultar();
+      },
+      error => {
+        console.log(error)
+      }
+
+    )
   }
 
 }

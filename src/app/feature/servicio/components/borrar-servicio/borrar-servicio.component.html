@@ -1,7 +1,34 @@
 <br/>
 <br/>
 <div class="container">
-
-  <p>borrar-servicio works!</p>
+  <table class="table table-danger table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">idUsuario</th>
+      <th scope="col">tipoUsuario</th>
+      <th scope="col">tipoServicio</th>
+      <th scope="col">idMascota</th>
+      <th scope="col">total</th>
+      <th scope="col">fechaProgramada</th>
+      <th scope="col">fechaEntrega</th>
+      <th scope="col">fechaContable</th>
+      <th scope="col">Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listarServicios | async">
+      <td>{{item.id}}</td>
+      <td>{{item.idUsuario}}</td>
+      <td>{{item.tipoUsuario}}</td>
+      <td>{{item.tipoServicio}}</td>
+      <td>{{item.idMascota}}</td>
+      <td>{{item.total}}</td>
+      <td>{{item.fechaProgramada}}</td>
+      <td>{{item.fechaEntrega}}</td>
+      <td>{{item.fechaContable}}</td>
+      <td><button type="submit" class="btn btn-outline-danger btn-sm" (click)="borrarServicio(item)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
 </div>
-

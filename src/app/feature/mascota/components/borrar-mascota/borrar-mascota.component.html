@@ -1,6 +1,26 @@
-
 <br/>
 <br/>
 <div class="container">
-<p>borrar-mascota works!</p>
+  <table class="table table-danger table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Nombre</th>
+      <th scope="col">Especie</th>
+      <th scope="col">Raza</th>
+      <th scope="col">idCliente</th>
+      <th scope="col">Accion</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let item of listarMascotas | async">
+      <td>{{item.id}}</td>
+      <td>{{item.nombre}}</td>
+      <td>{{item.especie}}</td>
+      <td>{{item.raza}}</td>
+      <td>{{item.idCliente}}</td>
+      <td><button type="submit" class="btn btn-outline-danger btn-sm" (click)="borrarMascota(item)">Eliminar</button></td>
+    </tr>
+  </tbody>
+</table>
 </div>

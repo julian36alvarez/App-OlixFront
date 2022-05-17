@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { ServicioService } from '@servicio/shared/service/servicio.service';
+import { Servicio } from '@servicio/shared/model/servicio';
 
 @Component({
   selector: 'app-borrar-servicio',
@@ -7,9 +10,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BorrarServicioComponent implements OnInit {
 
-  constructor() { }
+  public listarServicios: Observable<Servicio[]>;
+  constructor(protected servicioService: ServicioService) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.listarServicios = this.servicioService.consultar();
+  }
+
+  borrarServicio(servicio: any) {
+    console.log(servicio);
+    this.servicioService.eliminar(servicio).subscribe(
+      (response) =>{
+        console.log(response)
+        this.listarServicios = this.servicioService.consultar();
+      },
+      error => {
+        console.log(error)
+      }
+
+    )
   }
 
 }

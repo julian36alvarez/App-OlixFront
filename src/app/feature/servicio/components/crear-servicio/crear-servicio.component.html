@@ -34,8 +34,13 @@
     </div>
     <div class="mb-3">
       <label>fechaProgramada:</label>
-      <input validar type="text" id="fechaProgramada" name="fechaProgramada" placeholder="FechaProgramada" class="form-control"
+      <input validar type="date" id="fechaProgramada" name="fechaProgramada" placeholder="FechaProgramada" class="form-control"
         formControlName="fechaProgramada" >
+    </div>
+    <div class="mb-3">
+      <label>HoraProgramada:</label>
+      <input validar type="time" id="horaProgramada" name="horaProgramada" placeholder="horaProgramada" class="form-control"
+        formControlName="horaProgramada" >
     </div>
     <div class="mb-3 alert alert-danger" role="alert" *ngIf="this.errores">
       {{nombreExepcion}} : {{mensaje}}
