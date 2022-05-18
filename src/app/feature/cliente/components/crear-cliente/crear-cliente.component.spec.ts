@@ -34,7 +34,7 @@ describe('CrearClienteComponent', () => {
     component = fixture.componentInstance;
     clienteService = TestBed.inject(ClienteService);
     spyOn(clienteService, 'guardar').and.returnValue(
-     of(0)
+     of(true)
     );
     fixture.detectChanges();
   });
