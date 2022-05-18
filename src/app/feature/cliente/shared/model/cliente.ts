@@ -12,14 +12,11 @@ export class Cliente {
     direccion?: string,
     telefono?: string
 ) {
-  if(id){
     this.id = id
     this.identificacion = identificacion
     this.nombre = nombre
     this.direccion = direccion
     this.telefono = telefono
-  }
-
   }
 
 }

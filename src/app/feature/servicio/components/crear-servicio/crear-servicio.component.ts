@@ -62,9 +62,13 @@ export class CrearServicioComponent implements OnInit {
         this.mensaje = error.error.mensaje;
         this.errores =true;
         this.exito =false;
-
       }
     );
+    }else{
+        this.nombreExepcion = "Error";
+        this.mensaje = "Verifique los campos";
+        this.errores =true;
+        this.exito =false;
     }
 
   }
