@@ -5,11 +5,12 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { HomeComponent } from '@home/home.component';
 import { ProductoModule } from '@producto/producto.module';
-import { CoreModule } from '@core/core.module';
-import { CookieService } from 'ngx-cookie-service';
 import { ServicioModule } from '@servicio/servicio.module';
 import { MascotaModule } from '@mascota/mascota.module';
 import { ClienteModule } from '@cliente/cliente.module';
+import { CoreModule } from '@core/core.module';
+import { CookieService } from 'ngx-cookie-service';
+
 
 
 
