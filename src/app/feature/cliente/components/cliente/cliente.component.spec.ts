@@ -2,7 +2,7 @@ import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
 import { of } from 'rxjs';
 import { ClienteComponent } from './cliente.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClienteService } from '../../shared/service/cliente.service';
 import { HttpService } from 'src/app/core/services/http.service';
@@ -18,7 +18,7 @@ describe('ClienteComponent', () => {
       declarations: [ ClienteComponent ],
       imports: [
         CommonModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule
       ],
       providers: [ClienteService, HttpService],

@@ -4,7 +4,7 @@ import { BorrarClienteComponent } from './borrar-cliente.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ClienteService } from '../../shared/service/cliente.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 
 describe('BorrarClienteComponent', () => {
@@ -17,7 +17,7 @@ describe('BorrarClienteComponent', () => {
       declarations: [ BorrarClienteComponent ],
       imports: [
         CommonModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule
       ],
       providers: [ClienteService, HttpService],

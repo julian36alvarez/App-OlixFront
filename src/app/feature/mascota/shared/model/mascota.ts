@@ -12,13 +12,13 @@ export class Mascota {
     raza?: string,
     idCliente?: string
 ) {
-    if(id){
+    
       this.id = id
       this.nombre = nombre
       this.especie = especie
       this.raza = raza
       this.idCliente = idCliente
-    }
+   
   }
 
 

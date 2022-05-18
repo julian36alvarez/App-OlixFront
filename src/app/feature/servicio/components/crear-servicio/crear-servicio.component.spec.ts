@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 
 import { CrearServicioComponent } from './crear-servicio.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServicioService } from '../../shared/service/servicio.service';
 import { HttpService } from 'src/app/core/services/http.service';
@@ -19,7 +19,7 @@ describe('CrearServicioComponent', () => {
       declarations: [ CrearServicioComponent ],
       imports: [
         CommonModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule,
         ReactiveFormsModule,
         FormsModule

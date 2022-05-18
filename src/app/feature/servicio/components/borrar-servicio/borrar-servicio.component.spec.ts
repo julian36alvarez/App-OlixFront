@@ -4,7 +4,7 @@ import { BorrarServicioComponent } from './borrar-servicio.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServicioService } from '../../shared/service/servicio.service';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 
 describe('BorrarServicioComponent', () => {
@@ -17,7 +17,7 @@ describe('BorrarServicioComponent', () => {
       declarations: [ BorrarServicioComponent ],
       imports: [
         CommonModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule
       ],
       providers: [ServicioService, HttpService],

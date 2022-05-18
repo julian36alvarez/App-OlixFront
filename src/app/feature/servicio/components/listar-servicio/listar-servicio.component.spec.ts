@@ -3,7 +3,7 @@ import { of } from 'rxjs';
 
 import { ListarServicioComponent } from './listar-servicio.component';
 import { CommonModule } from '@angular/common';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { ServicioService } from '../../shared/service/servicio.service';
 import { Servicio } from '../../shared/model/servicio';
@@ -20,7 +20,7 @@ describe('ListarServicioComponent', () => {
       declarations: [ListarServicioComponent],
       imports: [
         CommonModule,
-        HttpClientModule,
+        HttpClientTestingModule,
         RouterTestingModule
       ],
       providers: [ServicioService, HttpService]
