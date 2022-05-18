@@ -33,19 +33,19 @@ pipeline {
     }
 
 
+    stage('Unit Test') {
+      steps {
+        echo "------------>Testing<------------"
+        sh 'npm run test'
+      }
+    }
+
     stage('Static Code Analysis') {
         steps{
             sonarqubeMasQualityGatesP(sonarKey:'co.com.ceiba:adn:olix.front.julian.alvarez',
             sonarName:'''"CeibaADN-AppOlix-Front(julian.alvarez)"''',
             sonarPathProperties:'./sonar-project.properties')
         }
-    }
-
-    stage('Unit Test') {
-      steps {
-        echo "------------>Testing<------------"
-        sh 'npm run test'
-      }
     }
 
 
