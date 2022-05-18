@@ -30,17 +30,20 @@ export class CrearServicioComponent implements OnInit {
   }
 
   crearServicio() {
-    var today = new Date(this.servicioForm.value.fechaProgramada);
-    var dd = String(today.getDate()+1).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-    var finalDate = yyyy + '-' + mm + '-' + dd + ' '+ this.servicioForm.value.horaProgramada +':00';
-    this.servicioForm.value.fechaProgramada = finalDate;
-    console.log(this.servicioForm.value);
+
+    console.log(this.servicioForm.status);
+
+    if(this.servicioForm.status == 'VALID'){
+      var today = new Date(this.servicioForm.value.fechaProgramada);
+      var dd = String(today.getDate()+1).padStart(2, '0');
+      var mm = String(today.getMonth() + 1).padStart(2, '0');
+      var yyyy = today.getFullYear();
+      var finalDate = yyyy + '-' + mm + '-' + dd + ' '+ this.servicioForm.value.horaProgramada +':00';
+      this.servicioForm.value.fechaProgramada = finalDate;
+
     this.servicioServices.guardar(this.servicioForm.value).subscribe(
       (response) =>{
-        console.log(response)
-        if(response){
+        if(response[0].id > 0){
           this.errores =false;
           this.exito =true;
           this.id = response[0].id;
@@ -61,8 +64,9 @@ export class CrearServicioComponent implements OnInit {
         this.exito =false;
 
       }
+    );
+    }
 
-    )
   }
 
 
