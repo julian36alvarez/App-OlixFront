@@ -26,6 +26,7 @@ export class CrearMascotaComponent implements OnInit {
 
   crearMascota() {
     console.log('Click');
+    if(this.mascotaForm.status == 'VALID'){
     this.mascotaServices.guardar(this.mascotaForm.value).subscribe(
       (response) =>{
         if(response['valor']>0){
@@ -44,8 +45,13 @@ export class CrearMascotaComponent implements OnInit {
         this.exito =false;
 
       }
-
-    )
+    );
+    }else{
+        this.nombreExepcion = "Error";
+        this.mensaje = "Verifique los campos";
+        this.errores =true;
+        this.exito =false;
+    }
   }
 
   private construirFormularioMascota() {

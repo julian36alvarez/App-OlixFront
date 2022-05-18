@@ -26,6 +26,7 @@ export class CrearClienteComponent implements OnInit {
 
   crearCliente() {
     console.log('Click');
+    if(this.clienteForm.status == 'VALID'){
     this.clienteServices.guardar(this.clienteForm.value).subscribe(
       (response) =>{
         if(response['valor']>0){
@@ -44,8 +45,13 @@ export class CrearClienteComponent implements OnInit {
         this.exito =false;
 
       }
-
-    )
+    );
+    }else{
+        this.nombreExepcion = "Error";
+        this.mensaje = "Verifique los campos";
+        this.errores =true;
+        this.exito =false;
+    }
   }
 
   private construirFormularioCliente() {
