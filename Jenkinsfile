@@ -33,12 +33,12 @@ pipeline {
     }
 
 
-    /*stage('Unit Test') {
+    stage('Unit Test') {
       steps {
         echo "------------>Testing<------------"
         sh 'npm run test'
       }
-    }*/
+    }
 
     stage('Static Code Analysis') {
         steps{
