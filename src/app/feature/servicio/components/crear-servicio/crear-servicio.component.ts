@@ -43,7 +43,7 @@ export class CrearServicioComponent implements OnInit {
 
     this.servicioServices.guardar(this.servicioForm.value).subscribe(
       (response) =>{
-        if(response[0].id > 0){
+        if(typeof response !== 'undefined'){
           this.errores =false;
           this.exito =true;
           this.id = response[0].id;
