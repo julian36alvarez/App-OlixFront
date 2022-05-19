@@ -29,7 +29,7 @@ describe('ServicioService', () => {
 
   it('deberia listar servicios', () => {
     const dummyServicios = [
-      new Servicio('1', 'Servicio 1'), new Servicio('2', 'Servicio 2')
+      new Servicio('1', '2', '2', '2','18/05/2022','23'), new Servicio('2', '2', '2', '2','18/05/2022','23')
     ];
     service.consultar().subscribe(servicios => {
       expect(servicios.length).toBe(2);
@@ -41,7 +41,7 @@ describe('ServicioService', () => {
   });
 
   it('deberia crear un servicio', () => {
-    const dummyServicio = new Servicio('1', 'Servicio 1');
+    const dummyServicio = new Servicio('1', '2', '2', '2','18/05/2022','23');
     service.guardar(dummyServicio).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
@@ -51,7 +51,7 @@ describe('ServicioService', () => {
   });
 
   it('deberia eliminar un servicio', () => {
-    const dummyServicio = new Servicio('1', 'Servicio 1');
+    const dummyServicio = new Servicio('1', '2', '2', '2','18/05/2022','23');
     service.eliminar(dummyServicio).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });

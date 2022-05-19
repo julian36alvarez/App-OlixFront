@@ -38,4 +38,8 @@ describe('BorrarServicioComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('eliminar servicio', () => {
+    expect(component.borrarServicio(0)).toBeDefined;
+  });
 });

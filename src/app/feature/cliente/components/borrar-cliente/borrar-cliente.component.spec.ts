@@ -44,4 +44,11 @@ describe('BorrarClienteComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('eliminar cliente', () => {
+  
+    component.borrarCliente(listaClientes[0]);
+  });
+
+ 
 });

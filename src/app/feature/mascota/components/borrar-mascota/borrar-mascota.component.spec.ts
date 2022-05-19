@@ -38,4 +38,8 @@ describe('BorrarMascotaComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('eliminar mascota', () => {
+    expect(component.borrarMascota(0)).toBeDefined;
+  });
 });
