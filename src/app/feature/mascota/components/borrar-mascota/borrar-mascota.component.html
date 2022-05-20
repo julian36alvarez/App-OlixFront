@@ -20,7 +20,7 @@
       <td>{{item.especie}}</td>
       <td>{{item.raza}}</td>
       <td>{{item.idCliente}}</td>
-      <td><button type="submit" class="btn btn-outline-danger btn-sm" (click)="borrarMascota(item)">Eliminar</button></td>
+      <td><button type="submit" id="eliminar_{{item.id}}" class="btn btn-outline-danger btn-sm" (click)="borrarMascota(item)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>

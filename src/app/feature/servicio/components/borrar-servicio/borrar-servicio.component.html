@@ -28,7 +28,7 @@
       <td>{{item.fechaProgramada}}</td>
       <td>{{item.fechaEntrega}}</td>
       <td>{{item.fechaContable}}</td>
-      <td><button type="submit" class="btn btn-outline-danger btn-sm" (click)="borrarServicio(item)">Eliminar</button></td>
+      <td><button type="submit" id="eliminar_{{item.id}}" class="btn btn-outline-danger btn-sm" (click)="borrarServicio(item)">Eliminar</button></td>
     </tr>
   </tbody>
 </table>

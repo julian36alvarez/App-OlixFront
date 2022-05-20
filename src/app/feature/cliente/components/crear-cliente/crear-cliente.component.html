@@ -25,10 +25,10 @@
       <input validar type="number" id="telefono" name="telefono" placeholder="Telefono" class="form-control"
         formControlName="telefono" >
     </div>
-    <div class="mb-3 alert alert-danger" role="alert" *ngIf="this.errores">
+    <div class="mb-3 alert alert-danger" role="alert" *ngIf="errores">
       {{nombreExepcion}} : {{mensaje}}
     </div>
-    <div class="mb-3 alert alert-success" role="alert" *ngIf="this.exito">
+    <div class="mb-3 alert alert-success" role="alert" *ngIf="exito">
       !Registrado con Exito!
     </div>
     <input id="crearCliente" class="btn btn-primary" type="submit" value="Crear Cliente" (click)="crearCliente()"/>
