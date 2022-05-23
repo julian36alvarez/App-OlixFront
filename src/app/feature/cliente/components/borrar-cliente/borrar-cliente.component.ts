@@ -13,22 +13,25 @@ export class BorrarClienteComponent implements OnInit {
   public listarClientes: Observable<Cliente[]>;
   constructor(protected clienteService: ClienteService) { }
 
+  public exito = false;
+  public errores = false;
+
   ngOnInit() {
     this.listarClientes = this.clienteService.consultar();
   }
 
   borrarCliente(cliente: any) {
-    console.log(cliente);
     this.clienteService.eliminar(cliente).subscribe(
-      (response) =>{
-        console.log(response)
+      (response) => {
+        this.exito = true;
         this.listarClientes = this.clienteService.consultar();
+        console.log(response);
       },
       error => {
-        console.log(error)
+        this.errores = true;
+        console.log(error);
       }
-
-    )
+    );
   }
 
 }

@@ -7,6 +7,7 @@ import { HttpService } from 'src/app/core/services/http.service';
 import { Servicio } from '../model/servicio';
 import { HttpResponse } from '@angular/common/http';
 
+
 describe('ServicioService', () => {
   let httpMock: HttpTestingController;
   let service: ServicioService;
@@ -22,6 +23,10 @@ describe('ServicioService', () => {
     service = TestBed.inject(ServicioService);
   });
 
+  afterEach(() => {
+    httpMock.verify();
+  });
+
   it('should be created', () => {
     const productService: ServicioService = TestBed.inject(ServicioService);
     expect(productService).toBeTruthy();
@@ -29,7 +34,7 @@ describe('ServicioService', () => {
 
   it('deberia listar servicios', () => {
     const dummyServicios = [
-      new Servicio('1', '2', '2', '2','18/05/2022','23'), new Servicio('2', '2', '2', '2','18/05/2022','23')
+      new Servicio('1', '2', '2', '2', '18/05/2023', '23'), new Servicio('2', '2', '2', '2', '18/05/2023', '23')
     ];
     service.consultar().subscribe(servicios => {
       expect(servicios.length).toBe(2);
@@ -40,23 +45,23 @@ describe('ServicioService', () => {
     req.flush(dummyServicios);
   });
 
-  it('deberia crear un servicio', () => {
-    const dummyServicio = new Servicio('1', '2', '2', '2','18/05/2022','23');
+  it('deberia crear un servicios', () => {
+    const dummyServicio = new Servicio('1', '2', '2', '2', '18/05/2022', '23');
     service.guardar(dummyServicio).subscribe((respuesta) => {
-      expect(respuesta).toEqual(true);
+      expect(respuesta[0]).toEqual(dummyServicio);
     });
     const req = httpMock.expectOne(apiEndpointServicios);
     expect(req.request.method).toBe('POST');
-    req.event(new HttpResponse<boolean>({body: true}));
   });
 
+
   it('deberia eliminar un servicio', () => {
-    const dummyServicio = new Servicio('1', '2', '2', '2','18/05/2022','23');
+    const dummyServicio = new Servicio('1', '2', '2', '2', '18/05/2022', '23');
     service.eliminar(dummyServicio).subscribe((respuesta) => {
       expect(respuesta).toEqual(true);
     });
     const req = httpMock.expectOne(`${apiEndpointServicios}/1`);
     expect(req.request.method).toBe('DELETE');
-    req.event(new HttpResponse<boolean>({body: true}));
+    req.event(new HttpResponse<boolean>({ body: true }));
   });
 });

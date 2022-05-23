@@ -15,5 +15,4 @@ export class ListarServicioComponent implements OnInit {
   ngOnInit() {
     this.listarServicios = this.servicioService.consultar();
   }
-
 }

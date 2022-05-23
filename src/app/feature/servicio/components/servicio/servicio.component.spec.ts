@@ -15,7 +15,7 @@ describe('ServicioComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ServicioComponent ],
+      declarations: [ServicioComponent],
       imports: [
         CommonModule,
         HttpClientTestingModule,
@@ -23,7 +23,7 @@ describe('ServicioComponent', () => {
       ],
       providers: [ClienteService, HttpService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -32,7 +32,7 @@ describe('ServicioComponent', () => {
     clienteService = TestBed.inject(ClienteService);
     spyOn(clienteService, 'trm').and.returnValue(
       of()
-     );
+    );
     fixture.detectChanges();
   });
 

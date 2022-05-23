@@ -12,6 +12,8 @@ export class BorrarServicioComponent implements OnInit {
 
   public listarServicios: Observable<Servicio[]>;
   constructor(protected servicioService: ServicioService) { }
+  public exito = false;
+  public errores = false;
 
   ngOnInit() {
     this.listarServicios = this.servicioService.consultar();
@@ -20,15 +22,16 @@ export class BorrarServicioComponent implements OnInit {
   borrarServicio(servicio: any) {
     console.log(servicio);
     this.servicioService.eliminar(servicio).subscribe(
-      (response) =>{
-        console.log(response)
+      (response) => {
+        this.exito = true;
+        console.log(response);
         this.listarServicios = this.servicioService.consultar();
       },
       error => {
-        console.log(error)
+        this.errores = true;
+        console.log(error);
       }
-
-    )
+    );
   }
 
 }

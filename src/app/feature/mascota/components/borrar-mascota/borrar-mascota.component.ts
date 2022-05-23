@@ -13,6 +13,9 @@ export class BorrarMascotaComponent implements OnInit {
   public listarMascotas: Observable<Mascota[]>;
   constructor(protected mascotaService: MascotaService) { }
 
+  public exito = false;
+  public errores = false;
+
   ngOnInit() {
     this.listarMascotas = this.mascotaService.consultar();
   }
@@ -20,15 +23,16 @@ export class BorrarMascotaComponent implements OnInit {
   borrarMascota(mascota: any) {
     console.log(mascota);
     this.mascotaService.eliminar(mascota).subscribe(
-      (response) =>{
-        console.log(response)
+      (response) => {
+        console.log(response);
+        this.exito = true;
         this.listarMascotas = this.mascotaService.consultar();
       },
       error => {
-        console.log(error)
+        this.errores = true;
+        console.log(error);
       }
-
-    )
+    );
   }
 
 }

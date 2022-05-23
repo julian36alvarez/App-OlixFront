@@ -14,7 +14,7 @@ export class ServicioService {
   }
 
   public guardar(servicio: Servicio) {
-    return this.http.doPost<Servicio, boolean>(`${environment.endpoint}/servicios`, servicio,
+    return this.http.doPost<Servicio, Servicio[]>(`${environment.endpoint}/servicios`, servicio,
                                                 this.http.optsName('crear/actualizar servicios'));
   }
 

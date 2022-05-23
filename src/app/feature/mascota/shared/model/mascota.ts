@@ -11,15 +11,14 @@ export class Mascota {
     especie?: string,
     raza?: string,
     idCliente?: string
-) {
-    
-      this.id = id
-      this.nombre = nombre
-      this.especie = especie
-      this.raza = raza
-      this.idCliente = idCliente
-   
-  }
+  ) {
 
+    this.id = id;
+    this.nombre = nombre;
+    this.especie = especie;
+    this.raza = raza;
+    this.idCliente = idCliente;
+
+  }
 
 }

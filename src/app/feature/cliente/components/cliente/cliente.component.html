@@ -1,18 +1,10 @@
 <br/>
 <br/>
 <div class="container">
-  <a id="linkCliente" routerLink="./" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">  <button type="button" class="btn btn-outline-primary">Cliente</button></a>
   <a id="linkCrearCliente" routerLink="./crear" routerLinkActive="active">  <button type="button" class="btn btn-outline-success">Crear cliente</button></a>
   <a id="linkBorrarCliente" routerLink="./borrar" routerLinkActive="active">  <button type="button" class="btn btn-outline-danger">Borrar cliente</button></a>
   <a id="linkListarCliente" routerLink="./listar" routerLinkActive="active">  <button type="button" class="btn btn-outline-info">listar cliente</button></a>
 </div>
-<br/>
-<br/>
-<div class="jumbotron jumbotron-fluid">
-  <div class="container">
-    <h1 class="display-4">{{trmValue}}</h1>
-    <p class="lead">Tasa Representativa del Mercado (TRM - Peso por dólar)</p>
-  </div>
-</div>
+
 
 <router-outlet></router-outlet>

@@ -6,6 +6,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ClienteService } from '@cliente/shared/service/cliente.service';
+import { TRM } from '@cliente/shared/model/trm';
+
 
 
 describe('HomeComponent', () => {
@@ -15,7 +17,7 @@ describe('HomeComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ HomeComponent ],
+      declarations: [HomeComponent],
       imports: [
         CommonModule,
         HttpClientTestingModule,
@@ -23,20 +25,20 @@ describe('HomeComponent', () => {
       ],
       providers: [ClienteService, HttpService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     clienteService = TestBed.inject(ClienteService);
-    spyOn(clienteService, 'trm').and.returnValue(
-      of()
-     );
     fixture.detectChanges();
   });
 
   it('should create', () => {
+    spyOn(clienteService, 'trm').and.returnValue(of([new TRM('4033.85', 'COP', '2022-05-18T00:00:00.000', '2022-05-18T00:00:00.000')]));
     expect(component).toBeTruthy();
+    component.ngOnInit();
+    expect(component.trmValue).toBe('4033.85');
   });
 });

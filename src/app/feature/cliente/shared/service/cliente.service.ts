@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpService } from '@core-service/http.service';
 import { environment } from 'src/environments/environment';
 import { Cliente } from '../model/cliente';
+import { TRM } from '../model/trm';
 
 
 @Injectable()
 export class ClienteService {
 
-  constructor(protected http: HttpService) {}
+  constructor(protected http: HttpService) { }
 
   public consultar() {
     return this.http.doGet<Cliente[]>(`${environment.endpoint}/clientes`, this.http.optsName('consultar clientes'));
@@ -15,21 +16,16 @@ export class ClienteService {
 
   public guardar(cliente: Cliente) {
     return this.http.doPost<Cliente, boolean>(`${environment.endpoint}/clientes`, cliente,
-                                                this.http.optsName('crear/actualizar clientes'));
+      this.http.optsName('crear clientes'));
   }
 
   public eliminar(cliente: Cliente) {
     return this.http.doDelete<boolean>(`${environment.endpoint}/clientes/${cliente.id}`,
-                                                 this.http.optsName('eliminar clientes'));
+      this.http.optsName('eliminar clientes'));
   }
 
-  public trm(){
-    var today = new Date();
-    var dd = String(today.getDate()).padStart(2, '0');
-    var mm = String(today.getMonth() + 1).padStart(2, '0');
-    var yyyy = today.getFullYear();
-    var daten = yyyy + '-' + mm + '-' + dd;
-    return this.http.doGet('https://www.datos.gov.co/resource/32sa-8pi3.json?vigenciadesde='+daten);
+  public trm(fecha: string) {
+    return this.http.doGet<TRM[]>('https://www.datos.gov.co/resource/32sa-8pi3.json?vigenciahasta=' + fecha);
   }
 
 

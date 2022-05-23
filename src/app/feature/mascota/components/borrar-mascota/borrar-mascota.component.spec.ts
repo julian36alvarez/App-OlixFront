@@ -1,20 +1,22 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { BorrarMascotaComponent } from './borrar-mascota.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
 import { MascotaService } from '../../shared/service/mascota.service';
 import { HttpClientModule } from '@angular/common/http';
 import { HttpService } from 'src/app/core/services/http.service';
+import { Mascota } from '@mascota/shared/model/mascota';
 
 describe('BorrarMascotaComponent', () => {
   let component: BorrarMascotaComponent;
   let fixture: ComponentFixture<BorrarMascotaComponent>;
   let mascotaService: MascotaService;
+  const listaMascotas: Mascota[] = [new Mascota('1', 'Mascota 1', 'PERRO', 'CRIOLLO', '12'), new Mascota('2', 'Mascota 2', 'PERRO', 'CRIOLLO', '12')];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ BorrarMascotaComponent ],
+      declarations: [BorrarMascotaComponent],
       imports: [
         CommonModule,
         HttpClientModule,
@@ -22,24 +24,30 @@ describe('BorrarMascotaComponent', () => {
       ],
       providers: [MascotaService, HttpService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(BorrarMascotaComponent);
     component = fixture.componentInstance;
     mascotaService = TestBed.inject(MascotaService);
-    spyOn(mascotaService, 'eliminar').and.returnValue(
-      of(true)
-     );
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('eliminar mascota', () => {
+    spyOn(mascotaService, 'eliminar').and.returnValue(
+      of(true)
+    );
+    component.borrarMascota(listaMascotas[0]);
+    expect(component.exito).toBeTruthy();
   });
 
-  it('eliminar mascota', () => {
-    expect(component.borrarMascota(0)).toBeDefined;
+  it('deberia mostrar error al eliminar mascota', () => {
+    spyOn(mascotaService, 'eliminar').and.returnValue(
+      throwError('Error')
+    );
+    component.borrarMascota(listaMascotas[0]);
+    expect(component.errores).toBeTruthy();
   });
+
 });

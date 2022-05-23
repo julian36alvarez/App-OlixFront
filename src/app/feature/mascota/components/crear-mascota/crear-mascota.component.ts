@@ -15,7 +15,7 @@ export class CrearMascotaComponent implements OnInit {
   mascotaForm: FormGroup;
   constructor(protected mascotaServices: MascotaService) { }
 
-  public mascota : Mascota = new Mascota();
+  public mascota: Mascota = new Mascota();
   public exito = false;
   public errores = false;
   public nombreExepcion = '';
@@ -26,40 +26,45 @@ export class CrearMascotaComponent implements OnInit {
 
   crearMascota() {
     console.log('Click');
-    if(this.mascotaForm.status == 'VALID'){
-    this.mascotaServices.guardar(this.mascotaForm.value).subscribe(
-      (response) =>{
-        if(response['valor']>0){
-          this.errores =false;
-          this.exito =true;
-        }else{
-          this.errores =true;
-          this.exito =false;
+    if (this.mascotaForm.status === 'VALID') {
+      this.mascotaServices.guardar(this.mascotaForm.value).subscribe(
+        (response) => {
+          if (response) {
+            this.errores = false;
+            this.exito = true;
+          } else {
+            this.errores = true;
+            this.exito = false;
+          }
+        },
+        error => {
+          console.log(error);
+          this.nombreExepcion = error.error.nombreExcepcion;
+          this.mensaje = error.error.mensaje;
+          this.errores = true;
+          this.exito = false;
         }
-      },
-      error => {
-        console.log(error)
-        this.nombreExepcion = error.error.nombreExcepcion;
-        this.mensaje = error.error.mensaje;
-        this.errores =true;
-        this.exito =false;
-
-      }
-    );
-    }else{
-        this.nombreExepcion = "Error";
-        this.mensaje = "Verifique los campos";
-        this.errores =true;
-        this.exito =false;
+      );
+    } else {
+      this.nombreExepcion = 'Error';
+      this.mensaje = 'Verifique los campos';
+      this.errores = true;
+      this.exito = false;
     }
   }
 
   private construirFormularioMascota() {
     this.mascotaForm = new FormGroup({
       idCliente: new FormControl('', [Validators.required]),
-      nombre: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
-      raza: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
-      especie: new FormControl('', [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO), Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
+      nombre: new FormControl('',
+        [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
+        Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
+      raza: new FormControl('',
+        [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
+        Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)]),
+      especie: new FormControl('',
+        [Validators.required, Validators.minLength(LONGITUD_MINIMA_PERMITIDA_TEXTO),
+        Validators.maxLength(LONGITUD_MAXIMA_PERMITIDA_TEXTO)])
     });
   }
 

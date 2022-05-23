@@ -13,7 +13,7 @@ describe('ListarMascotaComponent', () => {
   let component: ListarMascotaComponent;
   let fixture: ComponentFixture<ListarMascotaComponent>;
   let mascotaService: MascotaService;
-  const listaMascotas: Mascota[] = [new Mascota('1', 'Mascota 1', 'PERRO','CRIOLLO','12'), new Mascota('2', 'Mascota 2','PERRO','CRIOLLO','12')];
+  const listaMascotas: Mascota[] = [new Mascota('1', 'Mascota 1', 'PERRO', 'CRIOLLO', '12'), new Mascota('2', 'Mascota 2', 'PERRO', 'CRIOLLO', '12')];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -42,7 +42,7 @@ describe('ListarMascotaComponent', () => {
     expect(component).toBeTruthy();
     component.listarMascotas.subscribe(resultado => {
       expect(2).toBe(resultado.length);
+    });
   });
-});
 
 });

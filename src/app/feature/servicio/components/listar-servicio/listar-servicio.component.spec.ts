@@ -13,7 +13,7 @@ describe('ListarServicioComponent', () => {
   let component: ListarServicioComponent;
   let fixture: ComponentFixture<ListarServicioComponent>;
   let servicioService: ServicioService;
-  const listaServicios: Servicio[] = [new Servicio('1', '1','1','10/10/2021'), new Servicio('2', '1','1','10/10/2021')];
+  const listaServicios: Servicio[] = [new Servicio('1', '1', '1', '10/10/2021'), new Servicio('2', '1', '1', '10/10/2021')];
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
@@ -42,7 +42,7 @@ describe('ListarServicioComponent', () => {
     expect(component).toBeTruthy();
     component.listarServicios.subscribe(resultado => {
       expect(2).toBe(resultado.length);
+    });
   });
-});
 
 });

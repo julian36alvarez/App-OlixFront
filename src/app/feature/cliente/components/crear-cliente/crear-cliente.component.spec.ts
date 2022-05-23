@@ -1,5 +1,4 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
 
 import { CrearClienteComponent } from './crear-cliente.component';
 import { CommonModule } from '@angular/common';
@@ -8,15 +7,19 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { ClienteService } from '../../shared/service/cliente.service';
 import { HttpService } from 'src/app/core/services/http.service';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { of, throwError } from 'rxjs';
+
+
 
 describe('CrearClienteComponent', () => {
   let component: CrearClienteComponent;
   let fixture: ComponentFixture<CrearClienteComponent>;
   let clienteService: ClienteService;
 
+
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ CrearClienteComponent ],
+      declarations: [CrearClienteComponent],
       imports: [
         CommonModule,
         HttpClientTestingModule,
@@ -26,16 +29,13 @@ describe('CrearClienteComponent', () => {
       ],
       providers: [ClienteService, HttpService],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(CrearClienteComponent);
     component = fixture.componentInstance;
     clienteService = TestBed.inject(ClienteService);
-    spyOn(clienteService, 'guardar').and.returnValue(
-     of(true)
-    );
     fixture.detectChanges();
   });
 
@@ -53,11 +53,54 @@ describe('CrearClienteComponent', () => {
     component.clienteForm.controls.nombre.setValue('Cliente test');
     component.clienteForm.controls.direccion.setValue('Cll 123');
     component.clienteForm.controls.telefono.setValue(12345678);
+    spyOn(clienteService, 'guardar').and.returnValue(
+      of(true)
+    );
     expect(component.clienteForm.valid).toBeTruthy();
-
     component.crearCliente();
-
-    // Aca validamos el resultado esperado al enviar la petición
-    // TODO adicionar expect
+    expect(component.exito).toBeTruthy();
   });
+
+  it('deberia mostar error Registrando cliente formulario', () => {
+    expect(component.clienteForm.valid).toBeFalsy();
+    component.clienteForm.controls.identificacion.setValue(1235456);
+    component.clienteForm.controls.nombre.setValue('Cliente test');
+    component.clienteForm.controls.direccion.setValue('Cll 123');
+    expect(component.clienteForm.valid).toBeFalsy();
+    component.crearCliente();
+    expect(component.errores).toBeTruthy();
+    expect(component.nombreExepcion).toBe('Error');
+    expect(component.mensaje).toBe('Verifique los campos');
+  });
+
+  it('deberia mostar error Registrando cliente response', () => {
+    expect(component.clienteForm.valid).toBeFalsy();
+    component.clienteForm.controls.identificacion.setValue(1235456);
+    component.clienteForm.controls.nombre.setValue('Cliente test');
+    component.clienteForm.controls.direccion.setValue('Cll 123');
+    component.clienteForm.controls.telefono.setValue(12345678);
+    expect(component.clienteForm.valid).toBeTruthy();
+    spyOn(clienteService, 'guardar').and.returnValue(
+      of(false)
+    );
+    component.crearCliente();
+    expect(component.errores).toBeTruthy();
+  });
+
+  it('deberia mostar error Registrando ExcepcionDuplicidad', () => {
+    expect(component.clienteForm.valid).toBeFalsy();
+    component.clienteForm.controls.identificacion.setValue(1235456);
+    component.clienteForm.controls.nombre.setValue('Cliente test');
+    component.clienteForm.controls.direccion.setValue('Cll 123');
+    component.clienteForm.controls.telefono.setValue(12345678);
+    expect(component.clienteForm.valid).toBeTruthy();
+    spyOn(clienteService, 'guardar').and.returnValue(
+      throwError({ error: { nombreExcepcion: 'ExcepcionDuplicidad', mensaje: 'El usuario ya existe en el sistema' } })
+    );
+    component.crearCliente();
+    expect(component.errores).toBeTruthy();
+    expect(component.nombreExepcion).toBe('ExcepcionDuplicidad');
+    expect(component.mensaje).toBe('El usuario ya existe en el sistema');
+  });
+
 });

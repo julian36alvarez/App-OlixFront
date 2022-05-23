@@ -1,5 +1,5 @@
 import { waitForAsync, ComponentFixture, TestBed } from '@angular/core/testing';
-import { of } from 'rxjs';
+import { of, throwError } from 'rxjs';
 import { BorrarClienteComponent } from './borrar-cliente.component';
 import { CommonModule } from '@angular/common';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,9 +35,7 @@ describe('BorrarClienteComponent', () => {
     spyOn(clienteService, 'consultar').and.returnValue(
       of(listaClientes)
     );
-    spyOn(clienteService, 'eliminar').and.returnValue(
-      of(true)
-     );
+
     fixture.detectChanges();
   });
 
@@ -46,9 +44,21 @@ describe('BorrarClienteComponent', () => {
   });
 
   it('eliminar cliente', () => {
-  
+    spyOn(clienteService, 'eliminar').and.returnValue(
+      of(true)
+     );
     component.borrarCliente(listaClientes[0]);
+    expect(component.exito).toBeTruthy();
   });
 
- 
+  it('deberia mostrar error al eliminar cliente', () => {
+    spyOn(clienteService, 'eliminar').and.returnValue(
+      throwError('Error')
+     );
+    component.borrarCliente(listaClientes[0]);
+    expect(component.errores).toBeTruthy();
+  });
+
+
+
 });
