@@ -16,7 +16,7 @@ describe('workspace-project Mascota', () => {
   });
 
   it('Deberia crear mascota', () => {
-    const NOMBRE = 'OLIX PRUEBAS';
+    const NOMBRE = 'OLIX_PRUEBAS';
     const IDCLIENTE = '23';
     const RAZA = 'Schnauzer';
 
@@ -50,8 +50,8 @@ describe('workspace-project Mascota', () => {
     navBar.clickBotonMascota();
     mascota.clickBotonBorrarMascota();
     console.log(mascota.contarMascotas());
-    const idmascota = Math.floor(Math.random() * (300 - 50 + 1) + 50);
-    const idEliminar = 'eliminar_' + idmascota;
+    const NOMBRE = 'OLIX_PRUEBAS';
+    const idEliminar = 'eliminar_' + NOMBRE;
     browser.executeScript('window.scrollTo(0, document.body.scrollHeight);').then(() => {
       browser.sleep(2500);
       browser.actions().mouseMove(element(by.id(idEliminar))).click().perform();

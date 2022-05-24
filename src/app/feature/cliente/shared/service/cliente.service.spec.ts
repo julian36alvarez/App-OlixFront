@@ -23,8 +23,8 @@ describe('ClienteService', () => {
   });
 
   it('should be created', () => {
-    const productService: ClienteService = TestBed.inject(ClienteService);
-    expect(productService).toBeTruthy();
+    const clienteService: ClienteService = TestBed.inject(ClienteService);
+    expect(clienteService).toBeTruthy();
   });
 
   it('deberia listar clientes', () => {
@@ -38,6 +38,7 @@ describe('ClienteService', () => {
     const req = httpMock.expectOne(apiEndpointClienteConsulta);
     expect(req.request.method).toBe('GET');
     req.flush(dummyClientes);
+
   });
 
   it('deberia crear un cliente', () => {

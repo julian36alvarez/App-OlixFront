@@ -38,7 +38,7 @@ describe('workspace-project Cliente', () => {
 
   });
 
-  it('Deberia Fallr al crear cliente por duplicidad', () => {
+  it('Deberia Fallar al crear cliente por duplicidad', () => {
     const IDENTIFICAION = 1111111111;
     const NOMBRE = 'Cliente de pruebas';
     const DIRECCION = 'Call 10 Simpre viva';
@@ -60,10 +60,10 @@ describe('workspace-project Cliente', () => {
 
   });
 
-  it('Deberia listar clientes', () => {
+  it('Deberia listar clientes', async () => {
     page.navigateTo();
     navBar.clickBotonCliente();
-    cliente.clickBotonListarCliente();
+    await cliente.clickBotonListarCliente();
     expect(1).toBeGreaterThanOrEqual(cliente.contarClientes());
   });
 
